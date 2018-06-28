@@ -1,0 +1,23 @@
+{
+  "name": "ithub",
+  "version": "1.0.0",
+  "description": "一个简单交流社区",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KANGZHI19931223/ithub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KANGZHI19931223/ithub/issues"
+  },
+  "homepage": "https://github.com/KANGZHI19931223/ithub#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
