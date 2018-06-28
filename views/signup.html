@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/css/login.css">
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="header">
+            <a href="/">
+                <img src="/public/img/logo3.png" alt="">
+            </a>
+            <h1>用户注册</h1>
+        </div>
+        <form id="signup_form" method="post" action="">
+            <div class="form-group">
+                <label for="email">邮箱</label>
+                <input required type="email" class="form-control" id="email" name="email" placeholder="Email" autofocus>
+            </div>
+            <div class="form-group">
+                <label for="nickname">昵称</label>
+                <input required type="text" class="form-control" id="nickname" name="nickname" placeholder="Nickname">
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input required type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-success btn-block">注册</button>
+        </form>
+        <div class="message">
+            <p>已有账号? <a href="/login">点击登录</a>.</p>
+            {{ if msg }}
+                <div style="color: red">{{ msg }}</div>
+            {{ /if }}
+        </div>
+    </div>
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+</body>
+<script>
+    
+    // 1. 给注册按钮添加submit事件(需要将原有的submit默认事件取消)
+    // 注: 因为ECMA6语法浏览器存在兼容问题, 所以事件处理函数使用ECMA5的写法
+    $('.btn').on('submit', function (e) {
+
+        // (1) 取消type=submit的默认事件
+        e.preventDefault();
+
+        // (2) 获取表单数据
+        const formData = $('#signup_form').serialize();
+
+        // (3) 验证表单格式是否正确
+        
+
+        // (4) 发送ajax请求
+        $.ajax({
+
+            url: '/signup',
+
+            type: 'post',
+
+            dataType: 'json',
+
+            data: formData,
+
+            success: function (msg) {
+
+                console.log(msg);
+
+            }
+
+        })
+
+    })
+
+</script>
+</html>
