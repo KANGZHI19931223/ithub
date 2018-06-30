@@ -14,7 +14,7 @@
                 <form id="form">
                     <div class="form-group">
                         <label for="title">话题分类</label>
-                        <select class="form-control">
+                        <select name="categoryId" id="categoryId" class="form-control">
                             {{ if msg }}
                             {{ each msg }}
                             <option value="{{ $value.id }}">{{ $value.name }}</option>
@@ -40,6 +40,33 @@
     <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script>
         // 处理表单提交
+        // 表单添加事件
+        $('#form').submit(function (e) {
+            // 阻止默认提交事件
+            e.preventDefault();
+
+            // 1 获取表单内容
+            var data = $('#form').serialize();
+            // 2 发送ajax请求
+            $.post('/topic/create', data, function (msg) {
+
+               var code = msg.code;
+
+               var msg = msg.msg;
+
+               if (code === 200) {
+                   // 添加成功 , 页面跳转到首页
+                   location.href = '/';
+
+               } else {
+
+                   alert(msg);
+
+               }
+
+            })
+
+        })
     </script>
 </body>
 

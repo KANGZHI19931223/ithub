@@ -18,7 +18,9 @@ exports.showTopicCreate = (req, res) => {
 
             code: 200,
 
-            msg: data
+            msg: data,
+
+            session: req.session.user
 
         });
 
@@ -28,12 +30,73 @@ exports.showTopicCreate = (req, res) => {
 
 // 处理发布话题请求
 exports.handleTopicCreate = (req, res) => {
-    // (1) 先获取发布话题的内容
-    const topic = req.body;
+    // (1) 判断是否存在session
+    if (!req.session.user) {
 
-    topicCtrl.createTopic(topic, () => {
+        return res.json({
 
+            code: 403,
 
+            msg: '登录已过期, 请重新登陆'
+
+        });
+
+    }
+
+    // (2) 验证用户输入是否完整
+    if (!req.body.title || !req.body.content) {
+
+        return res.json({
+
+            code: 404,
+
+            msg: '请输入完整内容'
+
+        })
+
+    }
+
+    // (3) 数据库插入内容
+
+    req.body.userId = req.session.user.id;
+
+    req.body.createdAt = new Date();
+
+    topicCtrl.createTopic(req.body, (err, isOk) => {
+        // 由于此处的前端使用ajax发送请求,所以返回数据都以接口的形式返回
+        if (err) {
+
+            return res.json({
+
+                code: 400,
+
+                msg: '服务器错误'
+
+            });
+
+        }
+
+        if (isOk) {
+
+            res.json({
+
+                code: 200,
+
+                msg: '添加话题成功'
+
+            })
+
+        } else {
+
+            res.json({
+
+                code: 401,
+
+                msg: '添加话题失败'
+
+            })
+
+        }
 
     })
 
