@@ -4,10 +4,10 @@ const userModule = require('../modules/user');
 
 exports.showSignin = (req, res) => {
 
-	// res.send('showSignin');
 	res.render('signin.html');
 
 }
+
 exports.handleSignin = (req, res) => {
 
 	// 1 验证邮箱
@@ -62,9 +62,9 @@ exports.handleSignin = (req, res) => {
 	
 
 }
+
 exports.showSignup = (req, res) => {
 
-	// res.send('showSignup');
 	res.render('signup.html');
 
 }

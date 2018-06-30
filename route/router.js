@@ -7,6 +7,9 @@ const indexCtrl = require('../controllers/index');
 // 引入user模块
 const userCtrl = require('../controllers/user');
 
+// 引入topic模块
+const topicCtrl = require('../controllers/topic');
+
 // 2 创建路由对象
 const router = express.Router();
 
@@ -27,3 +30,16 @@ router
 	.post('/signup', userCtrl.handleSignup)
 
 	.get('/signout', userCtrl.handleSignout)
+
+	// topic.js话题页路由配置
+	.get('/topic/create', topicCtrl.showTopicCreate)
+
+	.post('/topic/create', topicCtrl.handleTopicCreate)
+
+	.get('/topic/:topicID', topicCtrl.showTopicId)
+
+	.get('/topic/:topicID/edit', topicCtrl.showEditTopic)
+
+	.post('/topic/:topicID/edit', topicCtrl.handleEditTopic)
+
+	.post('/topic/:topicID/delete', topicCtrl.handleDelTopic)

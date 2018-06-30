@@ -1,5 +1,5 @@
 // 此模块中单纯处理有关user的服务器操作
-const db = require('../controllers/db_helper');
+const db = require('./db_helper');
 
 const md5 = require('md5');
 // 查询相关
