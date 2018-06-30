@@ -36,6 +36,12 @@ exports.handleSignin = (req, res) => {
 			// <1> 判断密码是否正确
 			if (data[0].password === md5(req.body.password)) {
 				// 密码正确
+
+				// -------------设置session(session中不保存用户密码)-------------
+				delete data[0].password;
+
+				req.session.user = data[0];
+
 				res.redirect('/');
 
 			} else {
