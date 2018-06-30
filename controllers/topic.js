@@ -31,6 +31,7 @@ exports.showTopicCreate = (req, res) => {
 // 处理发布话题请求
 exports.handleTopicCreate = (req, res) => {
     // (1) 判断是否存在session
+    // 若session不存在,此种写法是没有办法完成数据提交的
     if (!req.session.user) {
 
         return res.json({
