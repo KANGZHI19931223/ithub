@@ -169,7 +169,10 @@ exports.handleSignup = (req, res) => {
 }
 
 exports.handleSignout = (req, res) => {
+	// 1 将session销毁(destroy)
+	req.session.destroy();
 
-	res.send('handleSignout');
+	// 2 将页面重定向到首页
+	res.redirect('/');
 
 }
