@@ -58,11 +58,11 @@ exports.createTopic = (topic, callback) => {
 }
 
 // 3 删除话题
-exports.editTopic = (id, callback) => {
+exports.delTopic = (id, callback) => {
 
     db.query(
 
-        'delete form `topics` where `id` = ? ',
+        'delete from `topics` where `id` = ? ',
 
         id,
 

@@ -224,7 +224,27 @@ exports.handleEditTopic = (req, res) => {
 
 // 处理删除话题请求
 exports.handleDelTopic = (req, res) => {
+	// 从动态路由中获取id
+	const id = req.params.topicID;
 
-	res.send('handleDelTopic');
+	topicCtrl.delTopic(id, (err, isOk) => {
+
+		if (err) {
+
+			return res.send('服务器内部错误');
+
+		}
+
+		if (isOk) {
+
+			res.redirect('/');
+
+		} else {
+
+			res.send('删除失败');
+
+		}
+
+	})
 
 };

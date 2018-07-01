@@ -43,4 +43,4 @@ router
 	// 处理修改话题
 	.post('/topic/:topicID/edit', topicCtrl.handleEditTopic)
 	// 删除话题
-	.post('/topic/:topicID/delete', topicCtrl.handleDelTopic)
+	.get('/topic/:topicID/delete', topicCtrl.handleDelTopic)

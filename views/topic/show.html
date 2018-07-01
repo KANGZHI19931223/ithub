@@ -25,7 +25,7 @@
                     <h1>{{ data.title }}</h1>
                     {{ if session && data.userId === session.id }}
                     <a href="/topic/{{ data.id }}/edit">编辑</a>
-                    <a href="/topic/{{ data.id }}/delete" id="delete_topic">删除</a> {{ /if }}
+                    <a href="javascript:;" id="delete_topic">删除</a> {{ /if }}
                     <hr>
                     {{ data.content }}
                 </article>
@@ -116,6 +116,16 @@
     <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script>
         // 点击删除
+        $('#delete_topic').click(function () {
+
+            if (confirm('确定要删除么')) {
+
+                location.href = '/topic/{{ data.id }}/delete';
+
+            }
+            
+
+        })
     </script>
 </body>
 
