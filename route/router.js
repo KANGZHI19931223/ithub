@@ -38,9 +38,9 @@ router
 	.post('/topic/create', topicCtrl.handleTopicCreate)
 	// 展示话题详情页
 	.get('/topic/:topicID', topicCtrl.showTopicId)
-	
+	// 展示修改话题页
 	.get('/topic/:topicID/edit', topicCtrl.showEditTopic)
-
+	// 处理修改话题
 	.post('/topic/:topicID/edit', topicCtrl.handleEditTopic)
-
+	// 删除话题
 	.post('/topic/:topicID/delete', topicCtrl.handleDelTopic)

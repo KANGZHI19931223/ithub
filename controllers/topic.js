@@ -125,28 +125,14 @@ exports.showTopicId = (req, res) => {
 			return res.send('服务器内部错误');
 
 		}
-		//(4) 根据id服务器查询到数据,再将下拉列表(categories)查询出来
-		categoryCtrl.getCategory((err, categories) => {
+		
+		res.render('topic/show.html', {
 
-			if (err) {
+			data,
 
-				return res.send('服务器内部错误');
-
-			}
-
-			res.render('topic/show.html', {
-
-				data,
-
-				categories,
-
-				session: req.session.user
-
-			})
+			session: req.session.user
 
 		})
-
-
 
 	})
 
@@ -154,8 +140,8 @@ exports.showTopicId = (req, res) => {
 
 // 渲染编辑话题页面
 exports.showEditTopic = (req, res) => {
-
-	res.send('showEditTopic');
+	// (1) 
+	
 
 };
 
