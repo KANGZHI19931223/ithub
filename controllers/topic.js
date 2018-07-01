@@ -140,7 +140,46 @@ exports.showTopicId = (req, res) => {
 
 // 渲染编辑话题页面
 exports.showEditTopic = (req, res) => {
-	// (1) 
+	// (1) 获取动态路由中传递的topicid
+	const id = req.params.topicID;
+	
+	// (2) 判断获取到的id是不是符合要求(是不是数字类型)
+	if (isNaN(id)) {
+
+		return res.send('参数不符合要求');
+
+	}
+	// (3) id符合要求的情况下 , 根据id查询数据
+	topicCtrl.getTopicById(id, (err, data) => {
+
+		if (err) {
+
+			return res.send('服务器内部错误');
+
+		}
+
+		// (4) 查询所有的话题分类(页面中的分类下拉列表需要)
+		categoryCtrl.getCategory((err, categories) => {
+
+			if (err) {
+
+				return res.send('服务器内部错误');
+
+			}
+
+			res.render('topic/edit.html', {
+
+				data,
+
+				categories,
+
+				session: req.session.user
+
+			})
+
+		})
+
+	})
 	
 
 };

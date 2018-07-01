@@ -11,21 +11,34 @@
     <section class="container">
         <div class="row">
             <div class="col-md-5">
-                {{ if !topic }} 编辑的话题已不存在！ {{ else if topic.userId !== sessionUser.id }} 你没有权限执行该操作！ {{ else }}
-                <form id="form" action="/topic/{{ topic.id }}/edit">
-                    <!-- 表单隐藏域 -->
-                    <input type="hidden" id="topic_id" value="{{ topic.id }}">
+
+                <form id="form">
+                    <!-- 设置一个隐藏域将当前修改的话题对应的id进行存储 -->
+                    <input type="hidden" value="{{ data.id }}" name="id">
+                    <div class="form-group">
+                        <label for="title">话题分类</label>
+                        <select name="categoryId" id="categoryId" class="form-control">
+                            {{ each categories }}
+                            <!-- 需要将当前下拉菜单的选中项显示为需要修改话题的类别 -->
+                            {{ if $value.id === data.categoryId }}
+                            <option selected value="{{ $value.id }}">{{ $value.name }}</option>
+                            {{ else }}
+                            <option value="{{ $value.id }}">{{ $value.name }}</option>
+                            {{ /if }}
+                            {{ /each }}
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="title">标题</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ topic.title }}">
+                        <input type="text" class="form-control" id="title" name="title" value="{{ data.title }}">
                     </div>
                     <div class="form-group">
                         <label for="content">内容</label>
-                        <textarea class="form-control" id="content" name="content" rows="10">{{ topic.content }}</textarea>
+                        <textarea class="form-control" id="content" name="content" rows="10">{{ data.content }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-default">提交</button>
                 </form>
-                {{ /if }}
+
             </div>
         </div>
     </section>
@@ -33,7 +46,7 @@
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script>
-        // 处理表单提交
+       
     </script>
 </body>
 
