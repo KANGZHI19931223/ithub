@@ -187,7 +187,38 @@ exports.showEditTopic = (req, res) => {
 // 处理编辑话题请求
 exports.handleEditTopic = (req, res) => {
 
-	res.send('handleEditTopic');
+	// 1 调用module模块中的updateTopicById更新话题的方法
+	topicCtrl.updateTopicById(req.body, (err, isOk) => {
+
+		if (err) {
+
+			return res.send('服务器内部错误');
+
+		}
+
+		if (isOk) {
+
+			res.json({
+
+				code: 200,
+
+				msg: '修改成功'
+
+			})
+
+		} else {
+
+			res.json({
+
+				code: 401,
+
+				msg: '修改话题失败'
+
+			})
+
+		}
+
+	})
 
 };
 
