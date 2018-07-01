@@ -1,12 +1,12 @@
 // topic话题相关数据库操作
 const db = require('./db_helper');
 
-// 1 查询话题topics
+// 1 查询全部话题topics
 exports.getTopics = (callback) => {
 
     db.query(
 
-        'select * from `topics`',
+        'select * from `topics` order by `createdAt` desc',
 
         (err, results) => {
             // (1) 如果数据库查询操作报错
@@ -108,12 +108,12 @@ exports.getTopicById = (id, callback) => {
             }
 
             if (results.length > 0) {
-
+                // 如果查询到数据时(肯定是只有一条)将这一条数据返回
                 callback(null, results[0]);
 
             } else {
 
-                callback(nul, null);
+                callback(null, null);
 
             }
 

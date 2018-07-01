@@ -32,12 +32,13 @@ router
 	.get('/signout', userCtrl.handleSignout)
 
 	// topic.js话题页路由配置
+
 	.get('/topic/create', topicCtrl.showTopicCreate)
 
 	.post('/topic/create', topicCtrl.handleTopicCreate)
-
+	// 展示话题详情页
 	.get('/topic/:topicID', topicCtrl.showTopicId)
-
+	
 	.get('/topic/:topicID/edit', topicCtrl.showEditTopic)
 
 	.post('/topic/:topicID/edit', topicCtrl.handleEditTopic)

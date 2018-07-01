@@ -17,20 +17,17 @@
     <section class="container">
         <div class="row">
             <div class="col-md-9">
-                {{ if !topic }}
+                {{ if !data }}
                 <p>此话题不存在或已被删除。</p>
-                <a class="btn btn-success" href="/">返回首页</a> {{ else }}
+                <a class="btn btn-success" href="/">返回首页</a>
+                 {{ else }}
                 <article class="markdown-body">
-                    <h1>{{ topic.title }}</h1>
-                    {{ if topic.userId === sessionUser.id }}
-                    <a href="/topic/{{ topic.id }}/edit">编辑</a>
-                    <a href="/topic/{{ topic.id }}/delete" id="delete_topic">删除</a> {{ /if }}
+                    <h1>{{ data.title }}</h1>
+                    {{ if session && data.userId === session.id }}
+                    <a href="/topic/{{ data.id }}/edit">编辑</a>
+                    <a href="/topic/{{ data.id }}/delete" id="delete_topic">删除</a> {{ /if }}
                     <hr>
-                    <!-- 
-          art-template 为了安全起见，默认是不渲染 HTML 格式的文件，它会帮你原样输出
-          如果你希望能输出渲染 HTML，则需要使用一种特殊的模板语法。
-         -->
-                    {{@ topic.content }}
+                    {{ data.content }}
                 </article>
                 <div class="panel panel-default">
                     <div class="panel-heading">
