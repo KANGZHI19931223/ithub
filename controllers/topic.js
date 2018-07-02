@@ -11,12 +11,10 @@ exports.showTopicCreate = (req, res) => {
 		if (err) {
 
 			return res.send('服务器错误');
-
+			
 		}
 
 		res.render('topic/create.html', {
-
-			code: 200,
 
 			msg: data,
 
@@ -67,13 +65,7 @@ exports.handleTopicCreate = (req, res) => {
 		// 由于此处的前端使用ajax发送请求,所以返回数据都以接口的形式返回
 		if (err) {
 
-			return res.json({
-
-				code: 400,
-
-				msg: '服务器错误'
-
-			});
+			return res.send('服务器内部错误');
 
 		}
 
@@ -193,7 +185,7 @@ exports.handleEditTopic = (req, res) => {
 		if (err) {
 
 			return res.send('服务器内部错误');
-
+			
 		}
 
 		if (isOk) {

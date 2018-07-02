@@ -9,9 +9,7 @@ exports.showIndex = (req, res) => {
 		// (1) 数据库查询报错
 		if (err) {
 
-			console.log(err);
-
-			return res.send('服务器错误')
+			return res.send('服务器错误');
 
 		}
 		// (2) 数据库查询没有报错

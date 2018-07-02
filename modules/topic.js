@@ -6,7 +6,7 @@ exports.getTopics = (callback) => {
 
     db.query(
 
-        'select * from `topics` order by `createdAt` desc',
+        'select * from `topics` order by, `createdAt` desc',
 
         (err, results) => {
             // (1) 如果数据库查询操作报错
